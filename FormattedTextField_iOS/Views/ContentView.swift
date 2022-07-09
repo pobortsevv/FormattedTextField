@@ -7,11 +7,23 @@
 
 import SwiftUI
 
+class Profile: ObservableObject {
+  @Published var phone: String = ""
+}
+
 struct ContentView: View {
-  @State var text: String = ""
+  @ObservedObject var profile = Profile()
+  @State private var showModal = false
   
   var body: some View {
-    FormattedTextField("Проверка", text: $text, formatter: inputFormatAsRuPhone)
+    HStack {
+      Text(profile.phone).padding()
+      Button("Изменить", action: {
+        showModal = true
+      }).sheet(isPresented: $showModal) {
+        PhoneNumberInputView(phone: $profile.phone)
+      }
+    }
   }
 }
 

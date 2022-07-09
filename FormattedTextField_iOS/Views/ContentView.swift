@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  FormattedTextField
+//  FormattedTextField_iOS
 //
 //  Created by sabra on 07.07.2022.
 //
@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+  @State var text: String = ""
+  
   var body: some View {
-    VStack {
-      Image(systemName: "globe")
-        .imageScale(.large)
-        .foregroundColor(.accentColor)
-      Text("Hello, world!")
-    }
+    FormattedTextField("Проверка", text: $text, formatter: inputFormatAsRuPhone)
   }
 }
 
